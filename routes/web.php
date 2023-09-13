@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,10 +30,10 @@ Route::get('/index', function () {
     return Inertia::render('Home/Index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('CadCliente', function () {
+Route::get('Cliente', function () {
     return Inertia::render('Clientes/Index');
 })->middleware(['auth', 'verified'])->name('Cliente.Cadastro');
-
+Route::post('/Cliente/Create', [ClienteController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
